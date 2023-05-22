@@ -16,7 +16,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 public class SoapWSConfig {
 	@Bean
-	public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
+	ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
 		MessageDispatcherServlet dispatcherServlet = new MessageDispatcherServlet();
 		dispatcherServlet.setApplicationContext(context);
 		dispatcherServlet.setTransformWsdlLocations(true);
@@ -24,7 +24,7 @@ public class SoapWSConfig {
 	}
 
 	@Bean(name = "loanEligibility")
-	public DefaultWsdl11Definition defaultWsdl11Definition(@Qualifier("xdSchema") XsdSchema schema) {
+	DefaultWsdl11Definition defaultWsdl11Definition(@Qualifier("xdSchema") XsdSchema schema) {
 		DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
 		defaultWsdl11Definition.setPortTypeName("LoanEligibilityIndicator");
 		defaultWsdl11Definition.setLocationUri("/ws");
@@ -33,8 +33,8 @@ public class SoapWSConfig {
 		return defaultWsdl11Definition;
 	}
 
-	@Bean
-	public XsdSchema xdSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("loanEligibility.xsd"));
-	}
+    @Bean
+    XsdSchema xdSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("loanEligibility.xsd"));
+    }
 }
